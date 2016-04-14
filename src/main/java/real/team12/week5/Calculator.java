@@ -12,13 +12,12 @@ public class Calculator {
 			this.plan = new Silver(aMinite, aLine);
 		this.bill = 0;
 	}
-	public void excessFee(int aMinit){
-		if(aMinit>this.plan.getFreeTime()){
-			bill += (aMinit - this.plan.getFreeTime()) * plan.getExcessFee();
-		}
+	public void excessFee(int aMinit) {
+		if(aMinit>this.plan.getFreeTime())
+			bill+=(aMinit-this.plan.getFreeTime())*plan.getExcessFee();
 	}
 	public void familyDiscont(int aLine) {
-		for (int i=4; i<=aLine; i++)
+		for (int i=3; i<aLine; i++)
 			bill += familyDiscountFee;
 	}
 	public void additinalFee(int aLine){

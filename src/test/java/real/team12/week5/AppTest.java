@@ -37,7 +37,7 @@ public class AppTest
 	@Test
 	public void oneLineAddedGold(){
 		
-		int line = 1; 
+		int line = 2; 
 		c.init(GOLD, 0, line);
 		c.basicFee();
 		c.additinalFee(line);
@@ -85,7 +85,7 @@ public class AppTest
 		c.basicFee();
 		c.additinalFee(line);
 		c.familyDiscont(line);
-		assertEquals(2995+4300+500*family, c.bill());//
+		assertEquals(2995+2900+500*family, c.bill());//
 	}
 	@Test
 	public void threeFamilyDiscountGold(){
@@ -95,10 +95,8 @@ public class AppTest
 		c.basicFee();
 		c.additinalFee(line);
 		c.familyDiscont(line);
-		assertEquals(2995+4300+500*family, c.bill());
+		assertEquals(4995+4300+500*family, c.bill());
 	}
-
-	
 	@Test
 	public void threeFamilyDiscountSilver(){
 		int line = 6;
@@ -107,6 +105,17 @@ public class AppTest
 		c.basicFee();
 		c.additinalFee(line);
 		c.familyDiscont(line);
-		assertEquals(2995+4300+500*family, c.bill());
+		assertEquals(2995+2900+500*family, c.bill());
+	}
+	@Test
+	public void excessFeeSilver(){
+		int line = 1;
+		int minite = 600;
+		c.init(SILVER, minite, line);
+		c.basicFee();
+		c.additinalFee(line);
+		c.familyDiscont(line);
+		c.excessFee(minite);
+		assertEquals(2995+5400, c.bill());
 	}
 }
